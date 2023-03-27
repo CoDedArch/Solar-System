@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--going to use the minified version-->
+    <script src="./script/aframe.min.js"></script>
+</head>
+<body>
+    
+    <!-- create scene first -->
+    <a-scene >
+        <!-- create an assert -->
+        <a-assets>
+            <img src="./texture/2k_earth_daymap.jpg" id="earth">
+            <img src="./texture/2k_jupiter.jpg" id="jupiter">
+            <img src="./texture/2k_mars.jpg" id="mars">
+            <img src="./texture/2k_mercury.jpg" id="mercury">
+            <img src="./texture/2k_moon.jpg" id="moon">
+            <img src="./texture/2k_neptune.jpg" id="neptune">
+            <img src="./texture/2k_saturn.jpg" id="saturn">
+            <img src="./texture/2k_saturn_ring_alpha.png" id="saturn_ring">
+            <img src="./texture/2k_stars_milky_way.jpg" id="galaxy">
+            <img src="./texture/2k_stars.jpg" id="stars">
+            <img src="./texture/2k_sun.jpg" id="sun">
+            <img src="./texture/2k_uranus.jpg" id="uranus">
+            <img src="./texture/2k_venus_atmosphere.jpg" id="venus-atm">
+            <img src="./texture/2k_venus_surface.jpg" id="venus-sur">
+        </a-assets>
+        <!--camera settings-->
+        <a-camera position="0 0 200"></a-camera>
+
+        <!--add light to some part of the scene -->
+        <a-entity light="type:ambient; intensity: 1"></a-entity>
+        <a-entity light="type: point; intensity: 4; distance: 40; color: #ffff40"></a-entity>
+        <a-entity light="type:spot;target:#s-sun; color:blue;penumbra:0.4; angle: 45; intensity:5" 
+        position="-150 0 90"></a-entity>
+        <a-entity light="type:spot;target:#s-sun; color:blue;penumbra:0.7; intensity:10" 
+        position="0 0 0"></a-entity>
+        <!--create the sun and planets all with the a-sphere -->
+        <!-- use entity in other of smallest to highest-->
+        <!-- SUN -->
+        
+        <a-sky material="src:#galaxy"></a-sky>
+        <a-entity 
+        geometry="primitive: sphere; 
+        radius:30;" 
+        position="0 0 0"
+        material="src:#sun" id="s-sun">
+    </a-entity>
+    <!-- Mercury -->
+    <a-entity id="orbit-mercury" geometry="primitive: torus; radius: 50; radius-tubular:0.03; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+    
+    <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 100000; easing:linear">
+        <a-entity 
+        geometry="primitive: sphere; 
+        radius:6; " 
+        position="47 -20 0"
+        material="src:#mercury" 
+        animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 200000; easing:linear "
+            ></a-entity>
+            <a-text value="MERCURY" color="white" position="27.08916 -31.36303 7.14348" text="" scale="30 30 30"></a-text>
+        </a-entity>
+        <!-- venus -->
+        <a-entity id="orbit-venus" geometry="primitive: torus; radius: 80; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+        position="0 0 0" ></a-entity>
+        <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 500000; easing:linear">
+            <a-entity 
+            geometry="primitive: sphere; 
+            radius:12;" 
+            position="69 40 0"
+            material="src:#venus-atm"
+            animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 100000; easing:linear">
+        </a-entity>
+        <a-text value="VENUS" color="white" position="64.81707 17.06714 -3.88423" text="" scale="30 30 30"></a-text>
+    </a-entity>
+    <!-- earth -->
+    <a-entity id="orbit-earth" geometry="primitive: torus; radius: 105; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+    
+    <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 1000000; easing:linear">
+        <a-entity 
+        geometry="primitive: sphere; 
+        radius:14;" 
+        position="105 -6 0"
+        material="src:#earth"
+        animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 50000; easing:linear">
+    </a-entity>
+    <a-text value="MOON" color="white" position="118.28058 34.07839 -23.78947" text="" scale="30 30 30"></a-text>
+    <a-text value="EARTH" color="white" position="91.49321 -26.46275 14.99933" text="" scale="30 30 30"></a-text>
+    <!-- animate the moon to move around -->
+    
+    <!-- moon -->
+    <a-entity 
+    geometry="primitive: sphere; 
+    radius:4;" 
+    position="120 19 -10"
+    material="src:#moon">
+</a-entity>
+            
+        </a-entity>
+    <!-- mars -->
+    <a-entity id="orbit-mars" geometry="primitive: torus; radius: 137; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+    
+    <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 2000000; easing:linear">
+        <a-entity 
+        geometry="primitive: sphere; 
+        radius:9;" 
+        position="130 -47 0"
+        material="src:#mars"
+        animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 25000; easing:linear">
+    </a-entity>
+        <a-text value="MARS" color="white" position="127.3031 -60.66495 0.65733" text="" scale="30 30 30"></a-text>
+    </a-entity>
+    <!-- Jupiter -->
+    <a-entity id="orbit-jupiter" geometry="primitive: torus; radius: 170; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+    
+    <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 4000000; easing:linear">
+        <a-entity 
+            geometry="primitive: sphere; 
+            radius:21;" 
+            position="170 25 0"
+            material="src:#jupiter"
+            animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 5000; easing:linear" id="p-jupiter">
+        </a-entity>
+        <a-text value="JUPITER" color="white" position="166.95641 -11.35335 2.78582" text="" scale="30 30 30"></a-text>
+    </a-entity>
+    <!-- Saturn -->
+    <a-entity id="orbit-saturn" geometry="primitive: torus; radius: 230; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+        <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 8000000; easing:linear">
+            
+            <a-entity  geometry="primitive: ring; radiusInner: 18; radiusOuter: 27;" material="src:#saturn_ring" 
+            position="209 90 0" rotation="-45 0 0" ></a-entity>
+            <a-entity 
+            geometry="primitive: sphere; 
+            radius:16;" 
+            position="209 90 0"
+            material="src:#saturn"
+            animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 10000; easing:linear">
+            </a-entity>
+            <a-text value="SATURN" color="white" position="196.36125 58.25166 20.43183" text="" scale="30 30 30"></a-text>
+
+    </a-entity>
+        <!-- Uranus -->
+        <a-entity id="orbit-uranus" geometry="primitive: torus; radius: 260; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+        position="0 0 0" ></a-entity>
+        <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 16000000; easing:linear">
+            <a-entity 
+            geometry="primitive: sphere; 
+            radius:12;" 
+            position="258 -32 0"
+            material="src:#uranus"
+            animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 15000; easing:linear">
+            </a-entity>
+            <a-text value="URANUS" color="white" position="243.22765 -55.64438 11.01227" text="" scale="40 40 40"></a-text>
+            
+        </a-entity>
+        <!-- neptune -->
+        <a-entity id="orbit-neptune" geometry="primitive: torus; radius: 300; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+        position="0 0 0" ></a-entity>
+        <a-entity animation="property: rotation; to: 0 0 360; loop: true; dur: 32000000; easing:linear">
+            <a-entity 
+            geometry="primitive: sphere; 
+            radius:10;" 
+            position="295 55 0"
+            material="src:#neptune"
+            animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 20000; easing:linear">
+            </a-entity>
+            <a-text value="NEPTUNE" color="white" position="277.35527 93.63542 0.05215" text="" scale="30 30 30"></a-text>
+    </a-entity>
+    <!-- pluto -->
+    <a-entity id="orbit-neptune" geometry="primitive: torus; radius: 340; radius-tubular:0.04; segments-tubular:1000" material="color:white" 
+    position="0 0 0" ></a-entity>
+    <a-entity 
+    geometry="primitive: sphere; 
+    radius:3;" 
+    position="339 15 0"
+    material="color:orange"
+    animation__rotate="property: rotation; loop:true; to: 0 360 0; dur: 1000; easing:linear">
+</a-entity>
+<a-text value="PLUTO" color="white" position="318.31605 39.68512 18.35872" text="" scale="40 40 40"></a-text>
+
+    </a-scene>
+</body>
+</html>
